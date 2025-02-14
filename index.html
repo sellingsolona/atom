@@ -1,25 +1,29 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<title>three.js css3d - sprites</title>
-		<meta charset="utf-8">
-		<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
-		<link type="text/css" rel="stylesheet" href="main.css">
-		<style>
-			body {
-				background-color: #fff;
-				color: #000;
-			}
-			a {
-				color: #48f;
-			}
-		</style>
-		
-	 	<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-		<script type="module" src="examples/build/three.module.js"></script>
-    		<script type="module" src="examples/jsm/controls/TrackballControls.js"></script>
-    		<script type="module" src="examples/jsm/renderers/CSS3DRenderer.js"></script>
-	</head>
+    <title>three.js css3d - sprites</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+    <link type="text/css" rel="stylesheet" href="main.css">
+    
+    <style>
+        body {
+            background-color: #fff;
+            color: #000;
+        }
+        a {
+            color: #48f;
+        }
+    </style>
+
+    <script type="module">
+        import * as THREE from 'https://cdn.jsdelivr.net/npm/three@0.150.1/build/three.module.js';
+        import { TrackballControls } from 'https://cdn.jsdelivr.net/npm/three@0.150.1/jsm/controls/TrackballControls.js';
+        import { CSS3DRenderer } from 'https://cdn.jsdelivr.net/npm/three@0.150.1/jsm/renderers/CSS3DRenderer.js';
+    </script>
+
+</head>
+
 	<body>
 
 		<div id="info"><a href="https://threejs.org" target="_blank" rel="noopener">three.js</a> css3d - sprites</div>
