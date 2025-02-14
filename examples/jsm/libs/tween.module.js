@@ -1,7 +1,4 @@
-/**
- * The Ease class provides a collection of easing functions for use with tween.js.
- */
-import * as THREE from '../../build/three.module.js';
+import * as THREE from 'https://cdn.jsdelivr.net/npm/three@0.150.1/build/three.module.js';
 
 var Easing = Object.freeze({
     Linear: Object.freeze({
