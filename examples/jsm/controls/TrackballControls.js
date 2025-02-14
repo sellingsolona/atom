@@ -1,13 +1,6 @@
 import * as THREE from '../../build/three.module.js';
 
-import {
-	Controls,
-	MathUtils,
-	MOUSE,
-	Quaternion,
-	Vector2,
-	Vector3
-} from 'three';
+const { Controls, MathUtils, MOUSE, Quaternion, Vector2, Vector3} = THREE;
 
 const _changeEvent = { type: 'change' };
 const _startEvent = { type: 'start' };
