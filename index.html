@@ -1,6 +1,4 @@
-<!DOCTYPE html>
-<html>
-	<head>
+<head>
     <title>three.js css3d - sprites</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
@@ -17,35 +15,24 @@
     </style>
 
     <script type="module">
+        
         import * as THREE from 'https://cdn.jsdelivr.net/npm/three@0.150.1/build/three.module.js';
-	import { TrackballControls } from 'https://cdn.jsdelivr.net/npm/three@0.150.1/examples/jsm/controls/TrackballControls.js';
-	import { CSS3DRenderer } from 'https://cdn.jsdelivr.net/npm/three@0.150.1/examples/jsm/renderers/CSS3DRenderer.js';
-    </script>
 
+        import TWEEN from './examples/jsm/libs/tween.module.js';
+        import { TrackballControls } from './examples/jsm/controls/TrackballControls.js';
+        import { CSS3DRenderer, CSS3DSprite } from './examples/jsm/renderers/CSS3DRenderer.js';
+    </script>
 </head>
 
-	<body>
-
-		<div id="info"><a href="https://threejs.org" target="_blank" rel="noopener">three.js</a> css3d - sprites</div>
-		<div id="container"></div>
-
-		<script type="importmap">
-			{
-				"imports": {
-					"three": "../build/three.module.js",
-					"three/addons/": "./jsm/"
-				}
-			}
-		</script>
 
 		<script type="module">
 
-			import * as THREE from 'three';
+			import * as THREE from 'https://cdn.jsdelivr.net/npm/three@0.150.1/build/three.module.js';
 
-			import TWEEN from 'three/addons/libs/tween.module.js';
-			import { TrackballControls } from 'three/addons/controls/TrackballControls.js';
-			import { CSS3DRenderer, CSS3DSprite } from 'three/addons/renderers/CSS3DRenderer.js';
-
+			import TWEEN from './examples/jsm/libs/tween.module.js';
+			import { TrackballControls } from './examples/jsm/controls/TrackballControls.js';
+			import { CSS3DRenderer, CSS3DSprite } from './examples/jsm/renderers/CSS3DRenderer.js';
+			
 			let camera, scene, renderer;
 			let controls;
 
@@ -83,7 +70,7 @@
 					transition();
 
 				} );
-				image.src = 'textures/sprite.png';
+				image.src = './examples/textures/sprite.png';
 
 				// Plane
 
