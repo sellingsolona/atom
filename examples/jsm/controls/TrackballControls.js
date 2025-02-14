@@ -1,4 +1,4 @@
-import * as THREE from '../../build/three.module.js';
+import * as THREE from 'https://cdn.jsdelivr.net/npm/three@0.150.1/build/three.module.js';
 
 const { Controls, MathUtils, MOUSE, Quaternion, Vector2, Vector3} = THREE;
 
