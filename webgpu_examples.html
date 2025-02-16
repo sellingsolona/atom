@@ -8,31 +8,33 @@
 </head>
 <body>
 
-    <script type="importmap">
-        {
-            "imports": {
-                "three": "https://cdn.jsdelivr.net/npm/three@0.163.0/build/three.module.js",
-                "three/nodes": "https://cdn.jsdelivr.net/npm/three@0.163.0/examples/jsm/nodes/Nodes.js",
-                "three/examples/": "https://cdn.jsdelivr.net/npm/three@0.163.0/examples/jsm/"
-            }
+<script type="importmap">
+    {
+        "imports": {
+            "three": "https://cdn.jsdelivr.net/npm/three@0.172.0/build/three.webgpu.min.js"
         }
-    </script>
+    }
+</script>
 
-    <script type="module">
-        import * as THREE from 'three';
-        import * as TSL from 'three/nodes';
-        import WebGPURenderer from 'three/examples/jsm/renderers/webgpu/WebGPURenderer.js';
-        import { OrbitControls } from 'three/examples/controls/OrbitControls.js';
-        import { GUI } from 'three/examples/libs/lil-gui.module.min.js';
-        import WebGPU from 'three/examples/capabilities/WebGPU.js';
+<script type="module">
+    import * as THREE from 'three';
+    import * as TSL from 'three/nodes';
+    import { OrbitControls } from 'three/examples/controls/OrbitControls.js';
+    import { GUI } from 'three/examples/libs/lil-gui.module.min.js';
+    import WebGPU from 'three/examples/capabilities/WebGPU.js';
 
-        import { initWebGPU } from './webgpu_main.js';  // Make sure webgpu_main.js is properly defined
+    import { initWebGPU } from './webgpu_main.js';  // Ensure this file is correctly implemented
 
-        document.addEventListener("DOMContentLoaded", () => {
-            console.log("webgpu_examples.html loaded correctly.");
-            initWebGPU();
-        });
-    </script>
+    document.addEventListener("DOMContentLoaded", () => {
+        console.log("webgpu_examples.html loaded correctly.");
+        initWebGPU();
+    });
+
+    // Initialize WebGPU Renderer (No need to import separately)
+    const renderer = new THREE.WebGPURenderer();
+</script>
+
+</body>
 
     <div id="info">
         <a href="https://threejs.org" target="_blank" rel="noopener">three.js webgpu</a> - VFX Linked particles
