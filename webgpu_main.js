@@ -1,6 +1,9 @@
 import * as THREE from 'three';
 import * as TSL from 'three/nodes';
-import WebGPURenderer from 'three/examples/jsm/renderers/webgpu/WebGPURenderer.js';
+import * as THREE from 'three';
+
+const renderer = new THREE.WebGPURenderer();
+
 import { OrbitControls } from 'three/examples/controls/OrbitControls.js';
 import { GUI } from 'three/examples/libs/lil-gui.module.min.js';
 import WebGPU from 'three/examples/capabilities/WebGPU.js';
