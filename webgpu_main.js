@@ -1,5 +1,5 @@
 import * as THREE from 'https://cdn.jsdelivr.net/npm/three@0.172.0/build/three.module.js';
-import * as TSL from 'https://cdn.jsdelivr.net/npm/three@0.172.0/examples/jsm/nodes/Nodes.js';
+import * as TSL from 'https://unpkg.com/three@0.172.0/examples/jsm/nodes/Nodes.js';
 import { OrbitControls } from 'https://cdn.jsdelivr.net/npm/three@0.172.0/examples/jsm/controls/OrbitControls.js';
 import { GUI } from 'https://cdn.jsdelivr.net/npm/three@0.172.0/examples/jsm/libs/lil-gui.module.min.js';
 import WebGPU from 'https://cdn.jsdelivr.net/npm/three@0.172.0/examples/jsm/capabilities/WebGPU.js';
