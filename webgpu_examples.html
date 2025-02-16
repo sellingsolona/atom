@@ -1,55 +1,37 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>three.js webgpu - VFX Linked particles</title>
+    <title>three.js webgpu - VFX Linked Particles</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
     <link type="text/css" rel="stylesheet" href="main.css">
 </head>
 <body>
 
+<div id="info">
+    <a href="https://threejs.org" target="_blank" rel="noopener">three.js webgpu</a> - VFX Linked Particles
+    <br>
+    Based on <a href="https://github.com/ULuIQ12/webgpu-tsl-linkedparticles" target="_blank" rel="noopener">this experiment</a> by Christophe Choffel
+</div>
+
+<!-- Import Map -->
 <script type="importmap">
-    {
-        "imports": {
-            "three": "https://cdn.jsdelivr.net/npm/three@0.172.0/build/three.webgpu.min.js"
-        }
+{
+    "imports": {
+        "three": "https://cdn.jsdelivr.net/npm/three@0.172.0/build/three.module.js",
+        "three/nodes": "https://cdn.jsdelivr.net/npm/three@0.172.0/examples/jsm/nodes/Nodes.js",
+        "three/examples/": "https://cdn.jsdelivr.net/npm/three@0.172.0/examples/jsm/"
     }
+}
 </script>
 
+<!-- Main Script -->
 <script type="module">
     import * as THREE from 'three';
     import * as TSL from 'three/nodes';
     import { OrbitControls } from 'three/examples/controls/OrbitControls.js';
     import { GUI } from 'three/examples/libs/lil-gui.module.min.js';
     import WebGPU from 'three/examples/capabilities/WebGPU.js';
-
-    import { initWebGPU } from './webgpu_main.js';  // Ensure this file is correctly implemented
-
-    document.addEventListener("DOMContentLoaded", () => {
-        console.log("webgpu_examples.html loaded correctly.");
-        initWebGPU();
-    });
-
-    // Initialize WebGPU Renderer (No need to import separately)
-    const renderer = new THREE.WebGPURenderer();
-</script>
-
-</body>
-
-    <div id="info">
-        <a href="https://threejs.org" target="_blank" rel="noopener">three.js webgpu</a> - VFX Linked particles
-        <br>
-        Based on <a href="https://github.com/ULuIQ12/webgpu-tsl-linkedparticles" target="_blank" rel="noopener">this experiment</a> by Christophe Choffel
-    </div>
-
-<script type="module">
-    import * as THREE from 'three';
-    import * as TSL from 'three/nodes';
-    import { WebGPURenderer } from 'three/examples/renderers/webgpu/WebGPURenderer.js';
-    import { OrbitControls } from 'three/examples/controls/OrbitControls.js';
-    import { GUI } from 'three/examples/libs/lil-gui.module.min.js';
-    import WebGPU from 'three/examples/capabilities/WebGPU.js';
-
 
         let camera, scene, renderer, postProcessing, controls, clock, light;
         let updateParticles, spawnParticles;
