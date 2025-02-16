@@ -1,15 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Three.js WebGPU - VFX Linked Particles</title>
-    <meta charset="UTF-8">
+    <title>three.js webgpu - VFX Linked particles</title>
+    <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
     <link type="text/css" rel="stylesheet" href="main.css">
 </head>
 <body>
 
     <div id="info">
-        <a href="https://threejs.org" target="_blank" rel="noopener">Three.js WebGPU</a> - VFX Linked Particles
+        <a href="https://threejs.org" target="_blank" rel="noopener">three.js webgpu</a> - VFX Linked particles
         <br>
         Based on <a href="https://github.com/ULuIQ12/webgpu-tsl-linkedparticles" target="_blank" rel="noopener">this experiment</a> by Christophe Choffel
     </div>
@@ -18,8 +18,8 @@
         {
             "imports": {
                 "three": "https://cdn.jsdelivr.net/npm/three@0.163.0/build/three.module.js",
-                "three/webgpu": "https://cdn.jsdelivr.net/npm/three@0.163.0/examples/jsm/capabilities/WebGPU.js",
-                "three/tsl": "https://cdn.jsdelivr.net/npm/three@0.163.0/examples/jsm/nodes/tsl.js",
+                "three/webgpu": "https://cdn.jsdelivr.net/npm/three@0.163.0/examples/jsm/renderers/webgpu/WebGPURenderer.js",
+                "three/tsl": "https://cdn.jsdelivr.net/npm/three@0.163.0/examples/jsm/nodes/Nodes.js",
                 "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.163.0/examples/jsm/"
             }
         }
@@ -29,13 +29,13 @@
 
         import * as THREE from 'three';
         import { atan, cos, float, max, min, mix, PI, PI2, sin, vec2, vec3, color, Fn, hash, hue, If, instanceIndex, Loop, mx_fractal_noise_float, mx_fractal_noise_vec3, pass, pcurve, storage, deltaTime, time, uv, uniform } from 'three/tsl';
-        import { bloom } from 'three/addons/nodes/display/BloomNode.js';
+        import { bloom } from 'three/addons/tsl/display/BloomNode.js';
+
         import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
-        import { GUI } from 'https://cdn.jsdelivr.net/npm/lil-gui@0.18.0/dist/lil-gui.esm.min.js';
-        import WebGPU from 'three/webgpu';
+        import { GUI } from 'three/addons/libs/lil-gui.module.min.js';
+        import WebGPU from 'three/addons/capabilities/WebGPU.js';
 
         let camera, scene, renderer, postProcessing, controls, clock, light;
-
         let updateParticles, spawnParticles;
         let getInstanceColor;
 
@@ -77,7 +77,6 @@
 
             camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 0.1, 200);
             camera.position.set(0, 0, 10);
-
             scene = new THREE.Scene();
             clock = new THREE.Clock();
 
@@ -94,11 +93,6 @@
             controls.autoRotate = true;
             controls.maxDistance = 75;
             window.addEventListener('resize', onWindowResize);
-
-            // GUI
-            const gui = new GUI();
-            gui.add(controls, 'autoRotate').name('Auto Rotate');
-            gui.add(controls, 'autoRotateSpeed', -10.0, 10.0, 0.01).name('Auto Rotate Speed');
         }
 
         function onWindowResize() {
@@ -107,9 +101,37 @@
             renderer.setSize(window.innerWidth, window.innerHeight);
         }
 
+        function onPointerMove(e) {
+            screenPointer.x = (e.clientX / window.innerWidth) * 2 - 1;
+            screenPointer.y = - (e.clientY / window.innerHeight) * 2 + 1;
+        }
+
+        function updatePointer() {
+            raycaster.setFromCamera(screenPointer, camera);
+            raycaster.ray.intersectPlane(raycastPlane, scenePointer);
+        }
+
         function animate() {
+            renderer.compute(updateParticles);
+            renderer.compute(spawnParticles);
+
+            spawnIndex.value = (spawnIndex.value + nbToSpawn.value) % nbParticles;
+            raycastPlane.normal.applyEuler(camera.rotation);
+            updatePointer();
+            previousSpawnPosition.value.copy(spawnPosition.value);
+            spawnPosition.value.lerp(scenePointer, 0.1);
+
+            colorOffset.value += clock.getDelta() * colorRotationSpeed.value * timeScale.value;
+
+            const elapsedTime = clock.getElapsedTime();
+            light.position.set(
+                Math.sin(elapsedTime * 0.5) * 30,
+                Math.cos(elapsedTime * 0.3) * 30,
+                Math.sin(elapsedTime * 0.2) * 30
+            );
+
             controls.update();
-            renderer.render(scene, camera);
+            postProcessing.render();
         }
 
     </script>
