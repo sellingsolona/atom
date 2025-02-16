@@ -8,23 +8,37 @@
 </head>
 <body>
 
-    <script type="module" src="webgpu_main.js"></script>
+    <script type="importmap">
+        {
+            "imports": {
+                "three": "https://cdn.jsdelivr.net/npm/three@0.163.0/build/three.module.js",
+                "three/nodes": "https://cdn.jsdelivr.net/npm/three@0.163.0/examples/jsm/nodes/Nodes.js",
+                "three/examples/": "https://cdn.jsdelivr.net/npm/three@0.163.0/examples/jsm/"
+            }
+        }
+    </script>
+
+    <script type="module">
+        import * as THREE from 'three';
+        import * as TSL from 'three/nodes';
+        import { WebGPURenderer } from 'three/examples/renderers/webgpu/WebGPURenderer.js';
+        import { OrbitControls } from 'three/examples/controls/OrbitControls.js';
+        import { GUI } from 'three/examples/libs/lil-gui.module.min.js';
+        import WebGPU from 'three/examples/capabilities/WebGPU.js';
+
+        import { initWebGPU } from './webgpu_main.js';  // Make sure webgpu_main.js is properly defined
+
+        document.addEventListener("DOMContentLoaded", () => {
+            console.log("webgpu_examples.html loaded correctly.");
+            initWebGPU();
+        });
+    </script>
 
     <div id="info">
         <a href="https://threejs.org" target="_blank" rel="noopener">three.js webgpu</a> - VFX Linked particles
         <br>
         Based on <a href="https://github.com/ULuIQ12/webgpu-tsl-linkedparticles" target="_blank" rel="noopener">this experiment</a> by Christophe Choffel
     </div>
-
-<script type="importmap">
-    {
-        "imports": {
-            "three": "https://cdn.jsdelivr.net/npm/three@0.163.0/build/three.module.js",
-            "three/nodes": "https://cdn.jsdelivr.net/npm/three@0.163.0/examples/jsm/nodes/Nodes.js",
-            "three/examples/": "https://cdn.jsdelivr.net/npm/three@0.163.0/examples/jsm/"
-        }
-    }
-</script>
 
 <script type="module">
     import * as THREE from 'three';
