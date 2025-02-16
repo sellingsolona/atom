@@ -1,12 +1,11 @@
-import * as THREE from 'three';
-import * as TSL from 'three/nodes';
-import * as THREE from 'three';
+import * as THREE from 'https://cdn.jsdelivr.net/npm/three@0.172.0/build/three.module.js';
+import * as TSL from 'https://cdn.jsdelivr.net/npm/three@0.172.0/examples/jsm/nodes/Nodes.js';
+import { OrbitControls } from 'https://cdn.jsdelivr.net/npm/three@0.172.0/examples/jsm/controls/OrbitControls.js';
+import { GUI } from 'https://cdn.jsdelivr.net/npm/three@0.172.0/examples/jsm/libs/lil-gui.module.min.js';
+import WebGPU from 'https://cdn.jsdelivr.net/npm/three@0.172.0/examples/jsm/capabilities/WebGPU.js';
 
+// Create the WebGPU Renderer
 const renderer = new THREE.WebGPURenderer();
-
-import { OrbitControls } from 'three/examples/controls/OrbitControls.js';
-import { GUI } from 'three/examples/libs/lil-gui.module.min.js';
-import WebGPU from 'three/examples/capabilities/WebGPU.js';
 
 let camera, scene, renderer, controls, clock, light;
 let particles = [];
