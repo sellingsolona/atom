@@ -1,29 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
 <head>
-    <title>three.js css3d - sprites</title>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
-    <link type="text/css" rel="stylesheet" href="main.css">
-    
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Three.js Application</title>
+    <link rel="stylesheet" href="main.css">
     <style>
-        body {
-            background-color: #fff;
-            color: #000;
-        }
-        a {
-            color: #48f;
-        }
+        body { margin: 0; }
+        canvas { display: block; }
     </style>
-
-    <script type="module">
-        
-        import * as THREE from 'https://cdn.jsdelivr.net/npm/three@0.150.1/build/three.module.js';
-
-        import TWEEN from './examples/jsm/libs/tween.module.js';
-        import { TrackballControls } from './examples/jsm/controls/TrackballControls.js';
-        import { CSS3DRenderer, CSS3DSprite } from './examples/jsm/renderers/CSS3DRenderer.js';
+    <!-- Import Map for Three.js -->
+    <script type="importmap">
+    {
+        "imports": {
+            "three": "https://cdn.jsdelivr.net/npm/three@0.163.0/build/three.module.js",
+            "three/examples/jsm/controls/OrbitControls.js": "https://cdn.jsdelivr.net/npm/three@0.163.0/examples/jsm/controls/OrbitControls.js"
+        }
+    }
     </script>
 </head>
-
+<body>
+    <script type="module" src="main.js"></script>
+</body>
 
 		<script type="module">
 
