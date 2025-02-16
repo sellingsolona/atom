@@ -14,29 +14,23 @@
         Based on <a href="https://github.com/ULuIQ12/webgpu-tsl-linkedparticles" target="_blank" rel="noopener">this experiment</a> by Christophe Choffel
     </div>
 
-    <script type="importmap">
-        {
-            "imports": {
-                "three": "https://cdn.jsdelivr.net/npm/three@0.163.0/build/three.module.js",
-                "three/webgpu": "https://cdn.jsdelivr.net/npm/three@0.163.0/examples/jsm/renderers/webgpu/WebGPURenderer.js",
-                "three/tsl": "https://cdn.jsdelivr.net/npm/three@0.163.0/examples/jsm/nodes/Nodes.js",
-                "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.163.0/examples/jsm/"
-            }
+<script type="importmap">
+    {
+        "imports": {
+            "three": "https://cdn.jsdelivr.net/npm/three@0.163.0/build/three.module.js",
+            "three/nodes": "https://cdn.jsdelivr.net/npm/three@0.163.0/examples/jsm/nodes/Nodes.js",
+            "three/examples/": "https://cdn.jsdelivr.net/npm/three@0.163.0/examples/jsm/"
         }
-    </script>
-
-    <script type="module">
-
-    import * as THREE from 'https://cdn.jsdelivr.net/npm/three@0.163.0/build/three.module.js';
-    import * as TSL from 'https://cdn.jsdelivr.net/npm/three@0.163.0/examples/jsm/nodes/Nodes.js';
-    import { WebGPURenderer } from 'https://cdn.jsdelivr.net/npm/three@0.163.0/examples/jsm/renderers/webgpu/WebGPURenderer.js';
-    import { OrbitControls } from 'https://cdn.jsdelivr.net/npm/three@0.163.0/examples/jsm/controls/OrbitControls.js';
-    import { GUI } from 'https://cdn.jsdelivr.net/npm/three@0.163.0/examples/jsm/libs/lil-gui.module.min.js';
-    import WebGPU from 'https://cdn.jsdelivr.net/npm/three@0.163.0/examples/jsm/capabilities/WebGPU.js';
-
-    // Your existing code continues...
+    }
 </script>
 
+<script type="module">
+    import * as THREE from 'three';
+    import * as TSL from 'three/nodes';
+    import { WebGPURenderer } from 'three/examples/renderers/webgpu/WebGPURenderer.js';
+    import { OrbitControls } from 'three/examples/controls/OrbitControls.js';
+    import { GUI } from 'three/examples/libs/lil-gui.module.min.js';
+    import WebGPU from 'three/examples/capabilities/WebGPU.js';
 
 
         let camera, scene, renderer, postProcessing, controls, clock, light;
