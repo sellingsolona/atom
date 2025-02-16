@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Three.js WebGPU - VFX Linked Particles</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+    <link type="text/css" rel="stylesheet" href="main.css">
+</head>
+<body>
+
+    <div id="info">
+        <a href="https://threejs.org" target="_blank" rel="noopener">Three.js WebGPU</a> - VFX Linked Particles
+        <br>
+        Based on <a href="https://github.com/ULuIQ12/webgpu-tsl-linkedparticles" target="_blank" rel="noopener">this experiment</a> by Christophe Choffel
+    </div>
+
+    <script type="importmap">
+        {
+            "imports": {
+                "three": "https://cdn.jsdelivr.net/npm/three@0.163.0/build/three.module.js",
+                "three/webgpu": "https://cdn.jsdelivr.net/npm/three@0.163.0/examples/jsm/capabilities/WebGPU.js",
+                "three/tsl": "https://cdn.jsdelivr.net/npm/three@0.163.0/examples/jsm/nodes/tsl.js",
+                "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.163.0/examples/jsm/"
+            }
+        }
+    </script>
+
+    <script type="module">
+
+        import * as THREE from 'three';
+        import { atan, cos, float, max, min, mix, PI, PI2, sin, vec2, vec3, color, Fn, hash, hue, If, instanceIndex, Loop, mx_fractal_noise_float, mx_fractal_noise_vec3, pass, pcurve, storage, deltaTime, time, uv, uniform } from 'three/tsl';
+        import { bloom } from 'three/addons/nodes/display/BloomNode.js';
+        import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+        import { GUI } from 'https://cdn.jsdelivr.net/npm/lil-gui@0.18.0/dist/lil-gui.esm.min.js';
+        import WebGPU from 'three/webgpu';
+
+        let camera, scene, renderer, postProcessing, controls, clock, light;
+
+        let updateParticles, spawnParticles;
+        let getInstanceColor;
+
+        const screenPointer = new THREE.Vector2();
+        const scenePointer = new THREE.Vector3();
+        const raycastPlane = new THREE.Plane(new THREE.Vector3(0, 0, 1), 0);
+        const raycaster = new THREE.Raycaster();
+
+        const nbParticles = Math.pow(2, 13);
+
+        const timeScale = uniform(1.0);
+        const particleLifetime = uniform(0.5);
+        const particleSize = uniform(1.0);
+        const linksWidth = uniform(0.005);
+
+        const colorOffset = uniform(0.0);
+        const colorVariance = uniform(2.0);
+        const colorRotationSpeed = uniform(1.0);
+
+        const spawnIndex = uniform(0);
+        const nbToSpawn = uniform(5);
+        const spawnPosition = uniform(vec3(0.0));
+        const previousSpawnPosition = uniform(vec3(0.0));
+
+        const turbFrequency = uniform(0.5);
+        const turbAmplitude = uniform(0.5);
+        const turbOctaves = uniform(2);
+        const turbLacunarity = uniform(2.0);
+        const turbGain = uniform(0.5);
+        const turbFriction = uniform(0.01);
+
+        init();
+
+        function init() {
+            if (WebGPU.isAvailable() === false) {
+                document.body.appendChild(WebGPU.getErrorMessage());
+                throw new Error('No WebGPU support');
+            }
+
+            camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 0.1, 200);
+            camera.position.set(0, 0, 10);
+
+            scene = new THREE.Scene();
+            clock = new THREE.Clock();
+
+            renderer = new THREE.WebGPURenderer({ antialias: true });
+            renderer.setClearColor(0x14171a);
+            renderer.setPixelRatio(window.devicePixelRatio);
+            renderer.setSize(window.innerWidth, window.innerHeight);
+            renderer.setAnimationLoop(animate);
+            renderer.toneMapping = THREE.ACESFilmicToneMapping;
+            document.body.appendChild(renderer.domElement);
+
+            controls = new OrbitControls(camera, renderer.domElement);
+            controls.enableDamping = true;
+            controls.autoRotate = true;
+            controls.maxDistance = 75;
+            window.addEventListener('resize', onWindowResize);
+
+            // GUI
+            const gui = new GUI();
+            gui.add(controls, 'autoRotate').name('Auto Rotate');
+            gui.add(controls, 'autoRotateSpeed', -10.0, 10.0, 0.01).name('Auto Rotate Speed');
+        }
+
+        function onWindowResize() {
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(window.innerWidth, window.innerHeight);
+        }
+
+        function animate() {
+            controls.update();
+            renderer.render(scene, camera);
+        }
+
+    </script>
+</body>
+</html>
