@@ -55,14 +55,14 @@ body, html {
     animation: glitch-hover 0.3s infinite;
 }
 
-#content-box {
+#content-container {
     display: none; /* Initially hidden */
     position: fixed;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     width: 80%;
-    max-width: 500px;
+    max-width: 800px;
     padding: 20px;
     background: var(--background-color);
     border-radius: 10px;
@@ -70,14 +70,17 @@ body, html {
     text-align: center;
 }
 
-section {
+.content-box {
     margin-bottom: 20px;
-    padding-bottom: 20px;
-    border-bottom: 1px solid var(--neon-color);
+    padding: 20px;
+    border: 1px solid var(--neon-color);
+    border-radius: 10px;
+    box-shadow: 0 0 10px var(--neon-color);
+    transition: box-shadow 0.3s ease-in-out;
 }
 
-section:last-child {
-    border-bottom: none;
+.content-box:hover {
+    box-shadow: 0 0 20px var(--neon-color);
 }
 
 h2 {
@@ -96,6 +99,51 @@ h2 {
 #copy-address:active {
     background: var(--neon-color);
     color: white;
+}
+
+.slider {
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    height: 200px;
+}
+
+.slide {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 100%;
+    opacity: 0;
+    transition: all 0.5s ease-in-out;
+}
+
+.slide.active {
+    left: 0;
+    opacity: 1;
+}
+
+.slider-btn {
+    background: var(--neon-color);
+    border: none;
+    color: white;
+    padding: 10px;
+    cursor: pointer;
+    margin: 10px;
+}
+
+#prev-btn {
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+#next-btn {
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
 }
 
 /* Glitch Animation */
