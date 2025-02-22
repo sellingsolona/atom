@@ -24,6 +24,7 @@ body, html {
     display: flex;
     justify-content: center;
     align-items: center;
+    z-index: 10; /* Ensure the overlay is in front of the background */
 }
 
 #wrapper {
@@ -68,6 +69,7 @@ body, html {
     align-items: center;
     flex-direction: column; /* Ensure vertical stacking of content boxes */
     overflow-y: auto; /* Enable vertical scrolling if content overflows */
+    z-index: 10; /* Ensure the content container is in front of the background */
 }
 
 .content-box {
