@@ -26,12 +26,55 @@
 
 <body>
     <div id="overlay">
-        <div id="glitch-text">JOIN THE PRESALE</div>
-        <button id="enter-button">ENTER</button>
+        <div id="wrapper">
+            <div id="glitch-text">JOIN THE PRESALE</div>
+            <button id="enter-button">ENTER</button>
+        </div>
     </div>
     <div id="content-box">
-        <p>Placeholder content goes here.</p>
+        <section id="sol-deposit">
+            <h2>Sol Deposit Address</h2>
+            <p id="deposit-address">BYwR3aMSudRWS7rAb5u9SNH8eDyDp9RZV7Mb375UuDSp</p>
+            <button id="copy-address">Copy Address</button>
+        </section>
+        <section id="phantom-wallet">
+            <h2>How to Obtain a Phantom Wallet</h2>
+            <ul>
+                <li><a href="https://apps.apple.com/us/app/phantom-wallet/id1563367268">Apple App Store</a></li>
+                <li><a href="https://play.google.com/store/apps/details?id=app.phantom">Google Play Store</a></li>
+                <li><a href="https://phantom.app/">Phantom Web (Chrome & Desktop extension)</a></li>
+            </ul>
+            <ol>
+                <li>Download and install the Phantom Wallet from the official source.</li>
+                <li>Open the app and create a new wallet.</li>
+                <li>Secure your secret recovery phrase (DO NOT share it).</li>
+                <li>Set a strong password to protect access.</li>
+                <li>Find your wallet address under the “Receive” tab.</li>
+            </ol>
+        </section>
+        <section id="buy-sol">
+            <h2>How to Buy Solana (SOL) on MoonPay & Send to Phantom</h2>
+            <p><a href="https://www.moonpay.com/buy/sol">MoonPay Buy SOL</a></p>
+            <ol>
+                <li>Go to MoonPay and select Solana (SOL).</li>
+                <li>Enter the amount of SOL you want and proceed to checkout.</li>
+                <li>Enter your Phantom wallet address in the recipient field.</li>
+                <li>Complete the purchase using a credit/debit card.</li>
+                <li>Wait for SOL to be deposited into your Phantom Wallet.</li>
+            </ol>
+        </section>
+        <section id="send-sol">
+            <h2>How to Send SOL from Phantom to the Presale Wallet</h2>
+            <ol>
+                <li>Open Phantom Wallet and navigate to the "Send" tab.</li>
+                <li>Paste the deposit address (BYwR3aMSudRWS7rAb5u9SNH8eDyDp9RZV7Mb375UuDSp).</li>
+                <li>Enter the amount of SOL you want to send.</li>
+                <li>Review the transaction and confirm.</li>
+                <li>Wait for transaction confirmation (usually takes seconds).</li>
+            </ol>
+        </section>
     </div>
+
     <div id="container"></div>
 
     <script type="module">
