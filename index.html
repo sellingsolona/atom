@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Three.js Application</title>
     <link rel="stylesheet" href="main.css">
+    <link rel="stylesheet" href="styles.css"> <!-- Include the new CSS file -->
     <style>
         body { margin: 0; }
         canvas { display: block; }
@@ -24,6 +25,13 @@
 </head>
 
 <body>
+    <div id="overlay">
+        <div id="glitch-text">JOIN THE PRESALE</div>
+        <button id="enter-button">ENTER</button>
+    </div>
+    <div id="content-box">
+        <p>Placeholder content goes here.</p>
+    </div>
     <div id="container"></div>
 
     <script type="module">
@@ -162,5 +170,6 @@
             renderer.render(scene, camera);
         }
     </script>
+    <script src="script.js"></script> <!-- Include the new JavaScript file -->
 </body>
 </html>
