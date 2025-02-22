@@ -14,7 +14,7 @@ document.addEventListener("DOMContentLoaded", () => {
         overlay.classList.add("glitch-out");
         setTimeout(() => {
             overlay.style.display = "none"; // Hide overlay after animation
-            contentContainer.style.display = "block"; // Show content container
+            contentContainer.style.display = "flex"; // Show content container
             contentContainer.classList.add("fade-in");
         }, 1000); // Duration of glitch-out animation
     });
